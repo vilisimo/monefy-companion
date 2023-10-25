@@ -1,23 +1,37 @@
-import { Entry } from '@/lib/data'
+import { MonefyContext } from '@/app/provider'
 import { getClientLocale, sumByKey } from '@/lib/tools'
 import Big from 'big.js'
+import Link from 'next/link'
+import { useContext } from 'react'
 
-const SummaryRow = ({ row, currency, locale }: { row: [string, Big]; currency: string; locale: string }) => {
+interface SummaryRowProps {
+  prefix: string
+  row: [string, Big]
+  currency: string
+  locale: string
+}
+
+const SummaryRow = ({ prefix, row, currency, locale }: SummaryRowProps) => {
   const [category, amount] = row
   const formattingOptions = {
     style: 'currency',
     currency,
   }
   const formattedAmount = amount.toNumber().toLocaleString(locale, formattingOptions)
+  const slugified = category.toLowerCase().replace(' ', '-')
 
   return (
     <div>
-      {category}: {formattedAmount}
+      <Link href={`${prefix}-${slugified}`}>
+        {category}: {formattedAmount}
+      </Link>
     </div>
   )
 }
 
-export function Summary({ data }: { data: Entry[] }) {
+export function Summary() {
+  const data = useContext(MonefyContext)
+
   const currency = data[0].currency
   const locale = getClientLocale()
   const summary = sumByKey(data)
@@ -32,11 +46,11 @@ export function Summary({ data }: { data: Entry[] }) {
       <h1>Summary</h1>
       <h2>Income:</h2>
       {income.map((s) => (
-        <SummaryRow key={s[0]} row={s} currency={currency} locale={locale} />
+        <SummaryRow prefix="income" key={s[0]} row={s} currency={currency} locale={locale} />
       ))}
       <h2>Expenses:</h2>
       {expenses.map((s) => (
-        <SummaryRow key={s[0]} row={s} currency={currency} locale={locale} />
+        <SummaryRow prefix="expenses" key={s[0]} row={s} currency={currency} locale={locale} />
       ))}
     </div>
   )
