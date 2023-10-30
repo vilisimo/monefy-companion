@@ -1,8 +1,8 @@
 'use client'
 
+import { MonefyContext } from '@/app/monefyContext'
 import Big from 'big.js'
 import { useContext } from 'react'
-import { MonefyContext } from '../provider'
 
 interface Props {
   params: {

@@ -1,4 +1,4 @@
-import { MonefyUploader } from '@/app/provider'
+import { MonefyCompanion } from '@/app/Monefy'
 import type { Metadata } from 'next'
 import { Quicksand } from 'next/font/google'
 import React from 'react'
@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={inter.className}>
         <h1 className="text-center text-3xl font-extrabold m-8">Supercharge your Monefy data</h1>
-        <MonefyUploader>{children}</MonefyUploader>
+        <MonefyCompanion>{children}</MonefyCompanion>
       </body>
     </html>
   )

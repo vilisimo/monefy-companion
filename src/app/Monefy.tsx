@@ -2,11 +2,10 @@
 
 import { UploadForm } from '@/lib/components/'
 import { Entry } from '@/lib/data'
-import { PropsWithChildren, createContext, useState } from 'react'
+import { PropsWithChildren, useState } from 'react'
+import { MonefyContext } from './monefyContext'
 
-export const MonefyContext = createContext<Entry[]>([])
-
-export const MonefyUploader = ({ children }: PropsWithChildren) => {
+export const MonefyCompanion = ({ children }: PropsWithChildren) => {
   const [data, setData] = useState<Entry[]>([])
 
   return (
