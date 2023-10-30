@@ -1,11 +1,11 @@
 import { MonefyUploader } from '@/app/provider'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Quicksand } from 'next/font/google'
 import React from 'react'
 
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Quicksand({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Monefy companion',
