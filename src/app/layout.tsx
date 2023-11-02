@@ -16,7 +16,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <h1 className="text-center text-3xl font-extrabold m-8">Supercharge your Monefy data</h1>
         <MonefyCompanion>{children}</MonefyCompanion>
       </body>
     </html>
