@@ -1,9 +1,10 @@
 'use client'
 
+import { localizeAmount } from '@/lib/tools/formatting'
+import Big from 'big.js'
+import { formatDuration, intervalToDuration } from 'date-fns'
 import { useContext } from 'react'
 import { MonefyContext, MonefyCurrencyContext } from './monefyContext'
-import Big from 'big.js'
-import { localizeAmount } from '@/lib/tools/formatting'
 
 interface Props {
   amount: Big
@@ -35,13 +36,16 @@ export default function Home() {
       expenses = expenses.plus(amount)
     }
   }
-  const qualifier = income.gt(expenses) ? 'gain' : 'loss'
+  const firstEntryDate = data[0].date
+  const lastEntryDate = data[data.length - 1].date
+  const duration = intervalToDuration({ start: firstEntryDate, end: lastEntryDate })
 
   return (
     <div className="flex flex-col gap-10">
+      <h1 className="text-center text-6xl font-extrabold m-10">In {formatDuration(duration)}</h1>
       <SummaryLine amount={income} text="You have earned:" />
       <SummaryLine amount={expenses} text="You have spent:" />
-      <SummaryLine amount={income.plus(expenses)} text={`Your ${qualifier}:`} />
+      <SummaryLine amount={income.plus(expenses)} text={`Your ${income.gt(expenses) ? 'gain' : 'loss'}:`} />
       {/* <Summary /> */}
     </div>
   )
