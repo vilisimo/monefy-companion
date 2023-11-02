@@ -5,7 +5,7 @@ import React from 'react'
 
 import './globals.css'
 
-const inter = Quicksand({ subsets: ['latin'] })
+const font = Quicksand({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Monefy companion',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={font.className}>
         <MonefyCompanion>{children}</MonefyCompanion>
       </body>
     </html>
