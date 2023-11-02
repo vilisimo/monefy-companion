@@ -3,7 +3,8 @@
 import { UploadForm } from '@/lib/components/'
 import { Entry } from '@/lib/data'
 import { PropsWithChildren, useState } from 'react'
-import { MonefyContext } from './monefyContext'
+import { MonefyContext, MonefyCurrencyContext } from './monefyContext'
+import { getClientLocale } from '@/lib/tools'
 
 export const MonefyCompanion = ({ children }: PropsWithChildren) => {
   const [data, setData] = useState<Entry[]>([])
@@ -16,7 +17,13 @@ export const MonefyCompanion = ({ children }: PropsWithChildren) => {
           <UploadForm handleData={setData} />
         </>
       )}
-      {data.length > 0 && <MonefyContext.Provider value={data}>{children}</MonefyContext.Provider>}
+      {data.length > 0 && (
+        <MonefyContext.Provider value={data}>
+          <MonefyCurrencyContext.Provider value={{ currency: data[0].currency, locale: getClientLocale() }}>
+            {children}
+          </MonefyCurrencyContext.Provider>
+        </MonefyContext.Provider>
+      )}
     </main>
   )
 }

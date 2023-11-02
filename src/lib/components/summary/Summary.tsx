@@ -1,5 +1,5 @@
-import { MonefyContext } from '@/app/monefyContext'
-import { getClientLocale, sumByKey } from '@/lib/tools'
+import { MonefyContext, MonefyCurrencyContext } from '@/app/monefyContext'
+import { sumByKey } from '@/lib/tools'
 import Big from 'big.js'
 import Link from 'next/link'
 import { useContext } from 'react'
@@ -31,9 +31,8 @@ const SummaryRow = ({ prefix, row, currency, locale }: SummaryRowProps) => {
 
 export function Summary() {
   const data = useContext(MonefyContext)
+  const { currency, locale } = useContext(MonefyCurrencyContext)
 
-  const currency = data[0].currency
-  const locale = getClientLocale()
   const summary = sumByKey(data)
   const entries = Object.entries(summary)
   const income = entries.filter((e) => e[1].gt(0))
