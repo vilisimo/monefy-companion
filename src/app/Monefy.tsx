@@ -13,7 +13,7 @@ export const MonefyCompanion = ({ children }: PropsWithChildren) => {
     <main>
       {data.length <= 0 && (
         <>
-          <h1 className="text-center text-3xl font-extrabold m-8">Supercharge your Monefy data</h1>
+          <h1 className="text-center text-4xl font-extrabold m-8">Supercharge your Monefy data</h1>
           <UploadForm handleData={setData} />
         </>
       )}
