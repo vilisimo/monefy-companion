@@ -1,5 +1,6 @@
 import { MonefyContext, MonefyCurrencyContext } from '@/app/monefyContext'
 import { sumByKey } from '@/lib/tools'
+import { localizeAmount } from '@/lib/tools/formatting'
 import Big from 'big.js'
 import Link from 'next/link'
 import { useContext } from 'react'
@@ -13,11 +14,7 @@ interface SummaryRowProps {
 
 const SummaryRow = ({ prefix, row, currency, locale }: SummaryRowProps) => {
   const [category, amount] = row
-  const formattingOptions = {
-    style: 'currency',
-    currency,
-  }
-  const formattedAmount = amount.toNumber().toLocaleString(locale, formattingOptions)
+  const formattedAmount = localizeAmount(amount, currency, locale)
   const slugified = category.toLowerCase().replace(' ', '-')
 
   return (
