@@ -1,11 +1,12 @@
 'use client'
 
+import { LargeHeader, LargeText } from '@/lib/components/text'
 import { localizeAmount } from '@/lib/tools/formatting'
 import Big from 'big.js'
 import { formatDuration, intervalToDuration } from 'date-fns'
+import Link from 'next/link'
 import { PropsWithChildren, useContext } from 'react'
 import { MonefyContext, MonefyCurrencyContext } from './monefyContext'
-import Link from 'next/link'
 
 interface AmountProp {
   amount: Big
@@ -18,7 +19,7 @@ const Header = ({ children }: PropsWithChildren) => {
 const Amount = ({ amount }: AmountProp) => {
   const { currency, locale } = useContext(MonefyCurrencyContext)
 
-  return <span className="block text-center text-6xl font-extrabold">{localizeAmount(amount, currency, locale)}</span>
+  return <LargeText>{localizeAmount(amount, currency, locale)}</LargeText>
 }
 
 const Income = ({ amount }: AmountProp) => {
@@ -73,11 +74,10 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-10">
-      <h1 className="text-center text-6xl font-extrabold m-10">In {formatDuration(duration)}</h1>
+      <LargeHeader className="m-10">In {formatDuration(duration)}</LargeHeader>
       <Income amount={income} />
       <Expenses amount={expenses} />
       <Summary income={income} expenses={expenses} />
-      {/* <Summary /> */}
     </div>
   )
 }
