@@ -10,6 +10,9 @@
     "lint": "next lint --fix"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/x-data-grid": "^6.18.2",
     "@types/papaparse": "^5.3.10",
     "big.js": "^6.2.1",
     "date-fns": "^2.30.0",
