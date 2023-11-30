@@ -30,8 +30,9 @@ export default function Page() {
     <div>
       <LargeHeader className="mt-10">Total earnings</LargeHeader>
       <LargeText>{localizedAmount}</LargeText>
-      <span className="m-10" />
-      <MuiDataTable rows={rows} />
+      <div className="flex justify-center mt-10">
+        <MuiDataTable rows={rows} />
+      </div>
     </div>
   )
 }

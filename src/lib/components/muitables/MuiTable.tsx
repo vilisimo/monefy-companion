@@ -35,21 +35,19 @@ export default function MuiDataTable({ rows }: Props) {
   }
 
   return (
-    <div className="flex justify-center">
-      <div className="w-[80%] lg:w-[40%]">
-        <DataGrid
-          autoHeight
-          rows={rows}
-          columns={[categoryColumnDefinition, amountColumnDefinition]}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
-          }}
-          pageSizeOptions={[5, 10]}
-          checkboxSelection={false}
-        />
-      </div>
+    <div className="w-[80%] lg:w-[40%]">
+      <DataGrid
+        autoHeight
+        rows={rows}
+        columns={[categoryColumnDefinition, amountColumnDefinition]}
+        initialState={{
+          pagination: {
+            paginationModel: { page: 0, pageSize: 5 },
+          },
+        }}
+        pageSizeOptions={[5, 10]}
+        checkboxSelection={false}
+      />
     </div>
   )
 }
