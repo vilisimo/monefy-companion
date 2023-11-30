@@ -1,9 +1,8 @@
 import { MonefyCurrencyContext } from '@/app/monefyContext'
 import { localizeAmount } from '@/lib/tools/formatting'
-import { DataGrid, GridRenderCellParams, GridValueFormatterParams } from '@mui/x-data-grid'
+import { DataGrid, GridColDef, GridRenderCellParams, GridValueFormatterParams } from '@mui/x-data-grid'
 import Big from 'big.js'
 import * as React from 'react'
-import { baseDefinition } from './columns'
 
 interface CellProps {
   amount: Big
@@ -22,6 +21,15 @@ export interface Props {
     amount: Big
   }[]
 }
+
+const baseDefinition = (field: string): GridColDef => ({
+  field,
+  headerClassName: 'mui-table--header',
+  headerAlign: 'left',
+  align: 'left',
+  flex: 1,
+  renderHeader: () => <span className="font-bold capitalize">{field}</span>,
+})
 
 export default function MuiDataTable({ rows }: Props) {
   const { currency, locale } = React.useContext(MonefyCurrencyContext)
@@ -47,6 +55,12 @@ export default function MuiDataTable({ rows }: Props) {
         }}
         pageSizeOptions={[5, 10]}
         checkboxSelection={false}
+        sx={{
+          '& .mui-table--header': {
+            backgroundColor: 'rgba(255, 7, 0, 0.55)',
+            fontWeight: 'bold',
+          },
+        }}
       />
     </div>
   )
