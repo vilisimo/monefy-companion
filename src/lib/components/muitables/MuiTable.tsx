@@ -12,7 +12,7 @@ interface CellProps {
 }
 
 const Cell = ({ amount, currency, locale }: CellProps) => {
-  return <strong>{localizeAmount(amount, currency, locale)}</strong>
+  return <span>{localizeAmount(amount, currency, locale)}</span>
 }
 
 export interface Props {
