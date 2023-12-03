@@ -1,2 +1,2 @@
 export * from './Headers'
-export * from './LargeText'
+export * from './Texts'
