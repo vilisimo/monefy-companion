@@ -1,2 +1,2 @@
-export * from './LargeHeader'
+export * from './Headers'
 export * from './LargeText'
