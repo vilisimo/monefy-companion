@@ -1,7 +1,7 @@
 'use client'
 
 import { LargeHeader, LargeText } from '@/lib/components'
-import MuiDataTable from '@/lib/components/muitables/MuiTable'
+import { Leaderboard } from '@/lib/components/leaderboard'
 import { localizeAmount } from '@/lib/tools/formatting'
 import Big from 'big.js'
 import { useContext } from 'react'
@@ -24,15 +24,14 @@ export default function Page() {
     }
   }
 
-  const rows = Array.from(breakdown).map((entry) => ({ id: entry[0], category: entry[0], amount: entry[1] }))
+  const entries = Array.from(breakdown)
 
   return (
     <div>
       <LargeHeader className="mt-10">Total earnings</LargeHeader>
       <LargeText>{localizedAmount}</LargeText>
-      <div className="flex justify-center mt-10">
-        <MuiDataTable rows={rows} />
-      </div>
+      <span className="block mt-10" />
+      <Leaderboard entries={entries} limit={5} />
     </div>
   )
 }
