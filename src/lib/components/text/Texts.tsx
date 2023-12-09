@@ -14,10 +14,10 @@ interface Props {
 }
 
 const sizes = {
-  large: '6xl',
+  large: 'text-6xl',
 }
 
 function Text({ size, children, className }: Props & PropsWithChildren & HtmlElementProps) {
-  const textSize = `text-${sizes[size]}`
+  const textSize = sizes[size]
   return <p className={`text-center font-extrabold ${textSize} ${className ? className : ''}`.trim()}>{children}</p>
 }

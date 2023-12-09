@@ -30,12 +30,12 @@ interface Props {
 }
 
 const sizes = {
-  small: '2xl',
-  medium: '4xl',
-  large: '6xl',
+  small: 'text-2xl',
+  medium: 'text-4xl',
+  large: 'text-6xl',
 }
 
 function Header({ size, children, className }: Props & PropsWithChildren & HtmlElementProps) {
-  const textSize = `text-${sizes[size]}`
+  const textSize = sizes[size]
   return <h1 className={`text-center font-extrabold ${textSize} ${className ? className : ''}`.trim()}>{children}</h1>
 }
