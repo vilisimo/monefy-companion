@@ -1,8 +1,9 @@
-import Big from 'big.js'
-import { MediumHeader } from '..'
 import { MonefyCurrencyContext } from '@/app/monefyContext'
-import { useContext } from 'react'
+import { LargeHeader, LargeText, MediumHeader } from '@/lib/components'
+import { Entry } from '@/lib/data'
 import { localizeAmount } from '@/lib/tools/formatting'
+import Big from 'big.js'
+import { useContext } from 'react'
 
 const LeaderboardTable = ({ entries }: { entries: [string, Big][] }) => {
   const { currency, locale } = useContext(MonefyCurrencyContext)
@@ -20,20 +21,37 @@ const LeaderboardTable = ({ entries }: { entries: [string, Big][] }) => {
 }
 
 interface Props {
-  entries: [string, Big][]
-  limit: number
+  entries: Entry[]
+  type: 'income' | 'expenses'
 }
 
-export function Leaderboard({ entries, limit }: Props) {
+export function Leaderboard({ entries, type }: Props) {
   // TODO: show the rest of the entries
   // TODO: remove muitable
-  const sortedEntries = entries.sort((a, b) => b[1].minus(a[1]).toNumber())
-  const topN = sortedEntries.slice(0, limit)
+  const { currency, locale } = useContext(MonefyCurrencyContext)
+
+  const total = entries.map((entry) => entry.amount).reduce((result, current) => result.plus(current), Big(0))
+  const localizedTotal = localizeAmount(total, currency, locale)
+
+  const breakdown = new Map<string, Big>()
+  for (const entry of entries) {
+    if (breakdown.get(entry.category) !== undefined) {
+      breakdown.set(entry.category, breakdown.get(entry.category)!.plus(entry.amount))
+    } else {
+      breakdown.set(entry.category, entry.amount)
+    }
+  }
+
+  const sortedEntries = Array.from(breakdown).sort((a, b) => b[1].minus(a[1]).toNumber())
+  const sortedByType = type === 'income' ? sortedEntries : sortedEntries.reverse()
 
   return (
     <div>
-      <MediumHeader>Top {limit} categories:</MediumHeader>
-      <LeaderboardTable entries={topN} />
+      <LargeHeader className="mt-10">Total expenses</LargeHeader>
+      <LargeText>{localizedTotal}</LargeText>
+      <span className="block mt-10" />
+      <MediumHeader>Category breakdown:</MediumHeader>
+      <LeaderboardTable entries={sortedByType} />
     </div>
   )
 }
