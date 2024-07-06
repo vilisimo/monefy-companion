@@ -4,11 +4,6 @@ import { MonefyCurrencyContext } from '@/app/monefyContext'
 import { useContext } from 'react'
 import { localizeAmount } from '@/lib/tools/formatting'
 
-interface Props {
-  entries: [string, Big][]
-  limit: number
-}
-
 const LeaderboardTable = ({ entries }: { entries: [string, Big][] }) => {
   const { currency, locale } = useContext(MonefyCurrencyContext)
 
@@ -22,6 +17,11 @@ const LeaderboardTable = ({ entries }: { entries: [string, Big][] }) => {
       ))}
     </ul>
   )
+}
+
+interface Props {
+  entries: [string, Big][]
+  limit: number
 }
 
 export function Leaderboard({ entries, limit }: Props) {
