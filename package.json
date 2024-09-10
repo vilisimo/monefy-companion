@@ -17,7 +17,7 @@
     "big.js": "^6.2.1",
     "date-fns": "^2.30.0",
     "husky": "^8.0.3",
-    "lint-staged": "^15.0.2",
+    "lint-staged": "^15.2.10",
     "next": "14.1.1",
     "papaparse": "^5.4.1",
     "react": "^18",
