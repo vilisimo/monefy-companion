@@ -1,0 +1,14 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Agent chattiness
+globs:
+alwaysApply: true
+---
+
+- Prefer to be concise but informative.
+- Do not be overly chatty. Don't state what you've done, rather show it.
+- When explaining concepts, prefer shorter explanation, unless specificly asked for a longer one.

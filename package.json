@@ -4,40 +4,49 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prepare": "husky install",
+    "prepare": "husky",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint --fix"
+    "lint": "next lint --fix",
+    "test": "echo \"No tests specified\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/x-data-grid": "^6.18.2",
-    "@types/papaparse": "^5.3.10",
-    "big.js": "^6.2.1",
-    "date-fns": "^2.30.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.2.10",
-    "next": "14.2.21",
-    "papaparse": "^5.4.1",
-    "react": "^18",
-    "react-dom": "^18"
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.1.0",
+    "@mui/system": "^7.1.0",
+    "@mui/x-data-grid": "^8.4.0",
+    "@types/papaparse": "^5.3.16",
+    "big.js": "^7.0.1",
+    "date-fns": "^4.1.0",
+    "next": "^15.3.2",
+    "papaparse": "^5.5.3",
+    "react": "^19",
+    "react-dom": "^19"
   },
   "devDependencies": {
-    "@types/big.js": "^6.2.1",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "@typescript-eslint/eslint-plugin": "^6.9.1",
-    "@typescript-eslint/parser": "^6.9.1",
+    "@tailwindcss/postcss": "^4.1.7",
+    "@types/big.js": "^6.2.2",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@typescript-eslint/eslint-plugin": "8.32.1",
+    "@typescript-eslint/parser": "8.32.1",
     "autoprefixer": "^10",
-    "eslint": "^8.52.0",
-    "eslint-config-next": "13.5.6",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-unused-imports": "^3.0.0",
+    "eslint": "9.27.0",
+    "eslint-config-next": "15.3.2",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.0.0",
     "postcss": "^8",
-    "prettier": "^3.0.3",
-    "tailwindcss": "^3",
-    "typescript": "^5.2.2"
+    "prettier": "^3.5.3",
+    "tailwindcss": "^4.1.7",
+    "typescript": "^5.8.3"
   }
 }
