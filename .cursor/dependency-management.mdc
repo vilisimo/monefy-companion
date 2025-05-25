@@ -1,0 +1,12 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Dependency management tools & best practices
+globs:
+alwaysApply: true
+---
+
+- Use npm for dependency management
