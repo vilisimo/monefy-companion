@@ -1,6 +1,6 @@
 import { MonefyCurrencyContext } from '@/app/monefyContext'
 import { localizeAmount } from '@/lib/tools/formatting'
-import { DataGrid, GridColDef, GridRenderCellParams, GridValueFormatterParams } from '@mui/x-data-grid'
+import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import Big from 'big.js'
 import * as React from 'react'
 
@@ -14,12 +14,14 @@ const Cell = ({ amount, currency, locale }: CellProps) => {
   return <span>{localizeAmount(amount, currency, locale)}</span>
 }
 
+interface TableRow {
+  id: string
+  category: string
+  amount: Big
+}
+
 export interface Props {
-  rows: {
-    id: string
-    category: string
-    amount: Big
-  }[]
+  rows: TableRow[]
 }
 
 const baseDefinition = (field: string): GridColDef => ({
@@ -36,9 +38,9 @@ export default function MuiDataTable({ rows }: Props) {
   const categoryColumnDefinition = baseDefinition('category')
   const amountColumnDefinition = {
     ...baseDefinition('amount'),
-    valueFormatter: (params: GridValueFormatterParams<Big>) => `${localizeAmount(params.value, currency, locale)}`,
-    renderCell: (params: GridRenderCellParams<Big>) => (
-      <Cell amount={params.value} currency={currency} locale={locale} />
+    valueFormatter: (value: Big) => `${localizeAmount(value, currency, locale)}`,
+    renderCell: (params: GridRenderCellParams<TableRow, Big>) => (
+      <Cell amount={params.value!} currency={currency} locale={locale} />
     ),
   }
 

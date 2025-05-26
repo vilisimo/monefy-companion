@@ -1,5 +1,5 @@
 import { MonefyRow } from '.'
-import parse from 'date-fns/parse'
+import { parse } from 'date-fns/parse'
 import Big from 'big.js'
 
 export interface Entry {
