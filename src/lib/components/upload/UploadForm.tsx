@@ -30,7 +30,7 @@ export const UploadForm = ({ handleData: handleEntries }: Props) => {
       type="file"
       name="file"
       accept=".csv"
-      style={{ display: 'block', margin: '10px auto' }}
+      className="block mx-auto my-2.5 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-white file:text-green-700 hover:file:bg-green-50 file:cursor-pointer cursor-pointer"
       onChange={changeHandler}
     />
   )
