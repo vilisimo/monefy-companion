@@ -24,7 +24,7 @@
     "@types/papaparse": "^5.3.16",
     "big.js": "^7.0.1",
     "date-fns": "^4.1.0",
-    "next": "^15.3.2",
+    "next": "^15.3.3",
     "papaparse": "^5.5.3",
     "react": "^19",
     "react-dom": "^19"
